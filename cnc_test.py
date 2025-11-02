@@ -890,7 +890,9 @@ def ui(im: Image.Image, nim: np.ndarray, im_name: str) -> Dict[str, Any]:
     note.add(settingsTab2, text="Settings2")
     note.add(savingTab, text="Saving")
     note.grid(row=0, column=1, sticky="nw")
-    ui_image = im.resize((nw, nh), Image.ANTIALIAS)
+    from PIL import Image
+    ui_image = im.resize((w, h), Image.Resampling.LANCZOS)
+
     try:
         from PIL import ImageTk
         ui_image_tk = ImageTk.PhotoImage(ui_image, master=imageTab)
